@@ -116,21 +116,24 @@ class Posts extends Component {
             <>
             <h1>Posts from "JSONPlaceHolder"</h1>
             <div className='forms-container'>  
+            {this.state.editFormDisabled ? 
                 <FormAddPost HandleAddForm = {this.HandleAddForm} 
                              HandleInputAdd={this.HandleInputAdd}
                              HandleTextAreaAdd={this.HandleTextAreaAdd}
                              state ={this.state}/>            
-
+                :
                 <FormEditPost HandleEditForm = {this.HandleEditForm} 
                               HandleInputEdit={this.HandleInputEdit}
                               HandleTextAreaEdit={this.HandleTextAreaEdit}
-                              state ={this.state}/>     
+                              state ={this.state}/> 
+                              }                                 
                 </div>                 
                 
                 {this.state.posts ? 
-                    <ul>{this.state.posts.map((post,index) => <li id={post.id} key={index}><h3>{post.title}</h3><p>{post.body}</p>
-                        <button onClick={this.DeletePost}>Delete</button>
-                        <button onClick={this.EditPost}>Edit</button>                
+                    <ul>{this.state.posts.map((post,index) => 
+                        <li id={post.id} key={index}><h3>{post.title}</h3><p>{post.body}</p>                           
+                                <button onClick={this.DeletePost}>Delete</button>
+                                <button onClick={this.EditPost}>Edit</button>                             
                         </li>).reverse()}
                     </ul>
                     : undefined

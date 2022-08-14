@@ -1,14 +1,9 @@
-.forms-container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-    row-gap: 10px;
-    margin-bottom: 20px;
+.forms-container {    
+    margin: 20px;
 }
 
 button:hover {
-    box-shadow: 2px 2px 1px rgb(243, 206, 163);
+    box-shadow: 2px 2px 1px rgb(202, 102, 43);
     color: rgb(202, 102, 43);
     
 }
@@ -16,18 +11,12 @@ button:active {
     font-weight: bold ;
 }
 
-button:disabled {
-    color: rgb(179, 175, 175);
-    box-shadow:none;
-    font-weight:inherit;
-}
-
 .form {
-    width: 40%;
+    width: 100%;
 }
 
 button {
-    color: black; 
+    color: rgb(202, 102, 43);
     margin-left: 5px;     
     border-radius: 2px;
     box-sizing: border-box;
@@ -38,6 +27,7 @@ button {
     transition: all 0.5s;
 }
 
+
 input , textarea {
     font-family: inherit;
     width: 100%;
@@ -46,15 +36,17 @@ input , textarea {
     border-style: none;
     display: block;
     margin-bottom: 10px;
-    background-color: rgba(182, 184, 184, 0.342);
+    background-color: rgba(182, 184, 184, 0.342); 
     font-size: 14px;
-    padding: 4px;
+    padding: 10px;
     resize: vertical;
-    outline: transparent solid 1px;
+    outline: transparent solid 2px;
 }
 
+
 input:focus , textarea:focus {
-    outline: #bdbcbc solid 1px;  
+    outline: rgb(202, 102, 43) solid 2px;     
+    background-color: rgba(244, 247, 247, 0.342);
     transition: outline 1s;  
 }
 
@@ -64,29 +56,47 @@ h1 {
     text-align: center;
 }
 
-h3 , p {
+ p {
     margin: 4px;
     font-size: 16px;
-
 }
 
-li{ 
+h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+li{     
+    min-width:150px;
     padding: 10px;
-    
+    width: 25%;
     border: 2px solid rgba(177, 175, 175, 0.795);
     margin-bottom: 5px;
     list-style-type: none;
     border-radius: 10px;
-    box-shadow: 2px 2px 1px rgb(207, 207, 207);
+    box-shadow: 4px 4px 4px rgb(207, 207, 207);
+    position: relative;
 }
 
-form {
+fieldset {
     box-sizing: border-box;
     padding: 10px;
     border: 2px solid rgba(128, 128, 128, 0.452) ;
     border-radius: 10px;
+    color: rgb(202, 102, 43);
+}
+legend {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 ul {
     padding: 0;
+    display: flex;
+    flex-direction: row;   
+    flex-wrap: wrap;
+    row-gap: 20px;
+    justify-content: space-around;    
+    margin-bottom: 0;
+
 }
