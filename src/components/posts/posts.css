@@ -3,7 +3,8 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
-    row-gap: 5px;
+    row-gap: 10px;
+    margin-bottom: 20px;
 }
 
 button:hover {
@@ -30,13 +31,14 @@ button {
     border-radius: 2px;
     box-sizing: border-box;
     border-style: none;    
-    font-size: 8px;
+    font-size: 16px;
     margin-right: 5px;
     box-shadow: 2px 2px 1px rgb(253, 239, 223);
     transition: all 0.5s;
 }
 
 input , textarea {
+    font-family: inherit;
     width: 100%;
     border-radius: 4px;
     box-sizing: border-box;
@@ -44,7 +46,7 @@ input , textarea {
     display: block;
     margin-bottom: 10px;
     background-color: rgba(182, 184, 184, 0.342);
-    font-size: 8px;
+    font-size: 14px;
     padding: 4px;
     resize: vertical;
     outline: transparent solid 1px;
@@ -57,16 +59,18 @@ input:focus , textarea:focus {
 
 
 h1 {
-    font-size: 16px;
+    font-size: 22px;
     text-align: center;
 }
 
 h3 , p {
-    margin: 0;
+    margin: 4px;
+    font-size: 16px;
+
 }
 
 li{ 
-    padding: 5px;
+    padding: 10px;
     
     border: 1px solid rgba(177, 175, 175, 0.795);
     margin-bottom: 5px;
@@ -77,7 +81,7 @@ li{
 
 form {
     box-sizing: border-box;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid rgba(128, 128, 128, 0.452) ;
     border-radius: 10px;
 }
