@@ -27,7 +27,8 @@ button:disabled {
 }
 
 button {
-    color: black;   
+    color: black; 
+    margin-left: 5px;     
     border-radius: 2px;
     box-sizing: border-box;
     border-style: none;    
@@ -72,7 +73,7 @@ h3 , p {
 li{ 
     padding: 10px;
     
-    border: 1px solid rgba(177, 175, 175, 0.795);
+    border: 2px solid rgba(177, 175, 175, 0.795);
     margin-bottom: 5px;
     list-style-type: none;
     border-radius: 10px;
@@ -82,7 +83,7 @@ li{
 form {
     box-sizing: border-box;
     padding: 10px;
-    border: 1px solid rgba(128, 128, 128, 0.452) ;
+    border: 2px solid rgba(128, 128, 128, 0.452) ;
     border-radius: 10px;
 }
 
