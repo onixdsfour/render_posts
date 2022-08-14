@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './posts.css';
-import JsonPlaceHolder from '../services/JsonPlaceHolder';
+import JsonPlaceHolder from '../../services/JsonPlaceHolder';
+import FormAddPost from '../form-Add/form-add-post';
+import FormEditPost from '../form-edit/form-edit-post';
 
 
 class Posts extends Component {
@@ -14,30 +16,30 @@ class Posts extends Component {
         editPostBody : undefined,
         editPostUser : undefined,
         editPostId : undefined,
-        editFormDisabled : true
+        editFormDisabled : true,        
     }
 
     componentDidMount() {
        (async () => {
             let posts = await JsonPlaceHolder('posts');            
-            this.setState({posts : posts});            
+            this.setState({posts});            
         })()
     }
 
     DeletePost = (e) => {
         
         (async () => {
-            let postId = e.target.parentElement.id;
-            let DeletePostNominal = await JsonPlaceHolder(`posts/${postId}`, 'DELETE');
+            let targeetPostId = e.target.parentElement.id;
+            let DeletePostNominal = await JsonPlaceHolder(`posts/${targeetPostId}`, 'DELETE');
                                  
-            let targetPostIndex = this.state.posts.findIndex(post => post.id === parseInt(e.target.parentElement.id));
+            let targetPostIndex = this.state.posts.findIndex(post => post.id === parseInt(targeetPostId));
             this.state.posts.splice(targetPostIndex,1);
             
             this.setState({posts : this.state.posts});
         })()
     }
 
-    // Form for add post
+   
     HandleTextAreaAdd = (e) => this.setState({newPostBody: e.target.value});         
 
     HandleInputAdd = (e) => this.setState({newPostTitle: e.target.value});
@@ -52,19 +54,16 @@ class Posts extends Component {
         };
 
         (async () => {                        
-            let addPostNominal = await JsonPlaceHolder('posts','POST', newPost );
-            let addedPost =  await addPostNominal;
-            
-            this.setState({posts : this.state.posts.concat(addedPost)});
+            let addPost = await JsonPlaceHolder('posts','POST', newPost );
+                        
+            this.setState({posts : this.state.posts.concat(addPost)});
             this.setState( {
                 newPostBody : '',
                 newPostTitle : ''
             })
         })();
     }
-    // Form for add post
-
-    // Form for edit post
+       
     HandleTextAreaEdit = (e) => this.setState({editPostBody: e.target.value});            
 
     HandleInputEdit = (e) => this.setState({editPostTitle: e.target.value});    
@@ -82,26 +81,21 @@ class Posts extends Component {
         
         (async () => {           
                     
-            let editPostNominal = await JsonPlaceHolder(`posts/${EditPost.id}`,'PUT', EditPost);
-            let editedPost =  await editPostNominal;
-                      
-            let targetPostIndex = this.state.posts.findIndex(post => post.id === parseInt(editedPost.id));
-
-            this.setState(() => {
-                this.state.posts.splice(targetPostIndex,1,editedPost);
-                let changedPosts = this.state.posts;
-                this.state.editFormDisabled = true;
-                this.state.editPostBody = '';
-                this.state.editPostTitle = '';
-                               
-                return {posts : changedPosts }
+            let editPost = await JsonPlaceHolder(`posts/${EditPost.id}`,'PUT', EditPost);
+         
+            this.state.posts.forEach(post => {
+                if(post.id === editPost.id){
+                    post.body = editPost.body;
+                    post.title = editPost.title;
+                }
+             })
+            this.setState({                
+                editFormDisabled : true ,
+                editPostBody : '' ,
+                editPostTitle : ''               
             });
         })();
-    }
-    // Form for edit post
-
-
-    
+    }    
     
     EditPost = (e) => {
         let targetPostIndex = this.state.posts.findIndex(post => post.id === parseInt(e.target.parentElement.id));
@@ -122,32 +116,22 @@ class Posts extends Component {
             <>
             <h1>Posts from "JSONPlaceHolder"</h1>
             <div className='forms-container'>  
-                <div>
-                    <form onSubmit={this.HandleAddForm}>                    
-                        <input  value = {this.state.newPostTitle ? this.state.newPostTitle : ''  } 
-                                onChange={this.HandleInputAdd} type="text" placeholder='enter post title' />                   
-                        <textarea value = {this.state.newPostBody ? this.state.newPostBody : ''  } 
-                                  onChange={this.HandleTextAreaAdd} placeholder='enter your text' ></textarea>                    
-                        <button type='submit'> Add new post</button>
-                    </form>
-                </div>                     
-                <div>
-                    <form onSubmit={this.HandleEditForm}>                    
-                        <input value={this.state.editPostTitle ? this.state.editPostTitle : ''  }
-                               onChange={this.HandleInputEdit} type="text" placeholder='edit post title' />                    
-                        <textarea value={this.state.editPostBody ? this.state.editPostBody : ''  } 
-                                  onChange={this.HandleTextAreaEdit}placeholder='edit your text'></textarea>                    
-                        <button disabled ={this.state.editFormDisabled} type='submit'> Save changes</button>
-                    </form>
-                </div>
-                </div> 
-                
+                <FormAddPost HandleAddForm = {this.HandleAddForm} 
+                             HandleInputAdd={this.HandleInputAdd}
+                             HandleTextAreaAdd={this.HandleTextAreaAdd}
+                             state ={this.state}/>            
+
+                <FormEditPost HandleEditForm = {this.HandleEditForm} 
+                              HandleInputEdit={this.HandleInputEdit}
+                              HandleTextAreaEdit={this.HandleTextAreaEdit}
+                              state ={this.state}/>     
+                </div>                 
                 
                 {this.state.posts ? 
                     <ul>{this.state.posts.map((post,index) => <li id={post.id} key={index}><h3>{post.title}</h3><p>{post.body}</p>
                         <button onClick={this.DeletePost}>Delete</button>
                         <button onClick={this.EditPost}>Edit</button>                
-                        </li>)}
+                        </li>).reverse()}
                     </ul>
                     : undefined
                 }

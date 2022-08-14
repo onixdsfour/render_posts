@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
+    row-gap: 5px;
 }
 
 button:hover {
@@ -19,6 +20,8 @@ button:disabled {
     box-shadow:none;
     font-weight:inherit;
 }
+
+
 
 button {
     color: black;
@@ -37,7 +40,7 @@ input , textarea {
     border-style: none;
     display: block;
     margin-bottom: 10px;
-    background-color: rgba(236, 238, 238, 0.342);
+    background-color: rgba(182, 184, 184, 0.342);
     font-size: 8px;
     padding: 4px;
     resize: vertical;
@@ -58,11 +61,19 @@ h1 {
 h3 , p {
     margin: 0;
 }
+
 li{ 
     padding: 5px;
     
     margin-bottom: 5px;
     list-style-type: none;
     
-    box-shadow: 2px 2px 1px rgb(219, 218, 217);
+    box-shadow: 2px 2px 1px rgb(207, 207, 207);
+}
+
+form {
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.452) ;
+    border-radius: 3px;
 }
