@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormAddPost = (props)=> {
     return (
-        <div>
+        <div className='form'>
             <form onSubmit={props.HandleAddForm}>                    
                 <input  value = {props.state.newPostTitle ? props.state.newPostTitle : ''  } 
                         onChange={props.HandleInputAdd} type="text" placeholder='enter post title' />                   

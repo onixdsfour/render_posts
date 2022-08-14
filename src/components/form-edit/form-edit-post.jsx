@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormEditPost = (props) => {
     return (
-        <div>
+        <div className='form'>
             <form onSubmit={props.HandleEditForm}>                    
                 <input value={props.state.editPostTitle ? props.state.editPostTitle : ''  }
                     onChange={props.HandleInputEdit} type="text" placeholder='edit post title' />                    
